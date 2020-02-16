@@ -24,6 +24,18 @@ router.post('/', function (req, res) {
     })
     .catch(function(error) {
         var errorMessage = error.message;
+        switch(errorMessage) {
+            case 'The email address is badly formatted.':
+                errorMessage = '電子郵件地址格式錯誤';
+                break;
+            case 'The email address is already in use by another account.':
+                errorMessage = '該電子郵件地址已被另一個帳戶使用';
+                break;
+            case 'The password must be 6 characters long or more.':
+            case 'Password should be at least 6 characters' :  
+                errorMessage = '密碼長度至少為6個字符';
+                break;  
+        }
         req.flash('error',errorMessage);
         res.redirect('/signup')
     })
