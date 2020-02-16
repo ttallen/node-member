@@ -20,6 +20,9 @@
 		<a href="/signup">註冊</a>
 	<% } %>
 	<% if(auth){ %>
+		<form action="/" method="post">
+			<input type="submit" value="登出">
+		</form>
 		<a href="/user">個人頁面</a>
 	<% } %>
 	<ul>
