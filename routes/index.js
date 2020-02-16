@@ -6,7 +6,8 @@ router.get('/', function (req, res, next) {
     var auth = req.session.uid;
     res.render('index', {
         title: '留言板',
-        auth: auth
+        auth: auth,
+        errors: req.flash('errors')
     });
 });
 /* GET home page. */
