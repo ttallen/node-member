@@ -23,9 +23,11 @@
 		<a href="/user">個人頁面</a>
 	<% } %>
 	<ul>
+		<% for(item in list){ %>
 			<li>
-				姓名 : 留言內容
+				<%= list[item].nickname %> : <%= list[item].content %>
 			</li>
+		<% } %>
 	 </ul>
 </body>
 </html>
