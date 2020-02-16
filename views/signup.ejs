@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+	<script src="./bootstrap/js/bootstrap.js"></script>
+	<script src="./bootstrap/lib/jquery-3.4.1.js"></script>
     <title>
         <%= title %>
     </title>
 </head>
 <body>
-    <a href="/">首頁</a>
-    <form action="/signup" method="post">
-        <h2>註冊</h2>
-        <div>
-            <label>Email:</label>
-            <input type="text" name="email" />
-        </div>
-        <div>
-            <label>Password:</label>
-            <input type="password" name="passwd" />
-        </div>
-        <div>
-            <label>nickname:</label>
-            <input type="text" name="nickname" />
-        </div>
-        <div>
-            <input type="submit" value="註冊" />
-        </div>
-        <%= error %>
-    </form>
+    <div class="container">
+        <a href="/" class="btn btn-primary mb-5 mt-3">首頁</a>
+        <form action="/signup" method="post">
+            <h2 class="mb-2">註冊</h2>
+            <span style="color:red"><%= error %></span>
+            <div class="form-group">
+            <label>暱稱</label>
+            <input type="text" class="form-control" name="nickname">
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail1">信箱</label>
+            <input type="email" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+            <label>密碼</label>
+            <input type="password" class="form-control" name="passwd">
+            </div>
+      
+            <input type="submit" class="btn btn-primary" value="註冊" />
+        </form>
+    </div>
 </body>
 
 </html>

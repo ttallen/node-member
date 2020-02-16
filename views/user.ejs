@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+	<script src="./bootstrap/js/bootstrap.js"></script>
+	<script src="./bootstrap/lib/jquery-3.4.1.js"></script>
     <title>
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 
 <body>
-    <a href="/">首頁</a>
+    <div class="container">
+    <a href="/" class="btn btn-primary mb-5 mt-3">首頁</a>
     <h1>基本資料</h1>
-    <h2>姓名: <%= nickname %></h2>
-    <h2>信箱: <%= email %></h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">暱稱</th>
+            <th scope="col">信箱</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= nickname %></td>
+            <td><%= email %></td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
 </body>
 </html>
