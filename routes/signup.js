@@ -11,12 +11,14 @@ router.post('/', function (req, res) {
     var email = req.body.email;
     var password = req.body.passwd;
     var nickname = req.body.nickname;
+    var username = req.body.username;
     // Promise
     fireAuth.createUserWithEmailAndPassword(email, password)
     .then(function(user) {
         var saveUser = {
             'email': email,
             'nickname': nickname,
+            'username': username,
             'uid': user.uid
         }
         firebaseDb.ref('/user/'+user.uid).set(saveUser);
