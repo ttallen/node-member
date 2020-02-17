@@ -4,7 +4,7 @@ var firebaseDb = require('../connections/firebase_admin_connect');
 var firebase = require('../connections/firebase_connect');
 var fireAuth = firebase.auth();
 router.get('/', function (req, res, next) {
-    firebaseDb.ref('list').once('value',function(snapshot){
+    firebaseDb.ref('list').limitToLast(5).once('value',function(snapshot){
         var auth = req.session.uid;
         res.render('index', {
             title: '留言板',
