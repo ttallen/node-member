@@ -1,12 +1,19 @@
 var express = require('express');
+const { check, validationResult } = require('express-validator');
 var router = express.Router();
 var firebaseDb = require('../connections/firebase_admin_connect');
-router.post('/', function (req, res) {
-    req.checkBody("content","內容不得為空值").notEmpty();
-    req.checkBody("content","內容不得超過30個字符").len(1, 30);
-    var errors = req.validationErrors();
-    if(errors){
-        req.flash('errors',errors[0].msg);
+const val = [
+    check('content')
+      .notEmpty()
+      .withMessage('內容不得為空'),
+      check('content')
+      .isLength({ max: 15 })
+      .withMessage('內容不得超過15個字符')
+  ];
+router.post('/', val, function (req, res) {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        req.flash('errors', errors.array()[0].msg);
         res.redirect('/');
     }else{
         firebaseDb.ref('user/'+req.session.uid).once('value',function(snapshot){

@@ -19,9 +19,9 @@ router.post('/', function (req, res) {
             'email': email,
             'nickname': nickname,
             'username': username,
-            'uid': user.uid
+            'uid': user.user.uid
         }
-        firebaseDb.ref('/user/'+user.uid).set(saveUser);
+        firebaseDb.ref(`/user/${user.user.uid}`).set(saveUser);
         res.redirect('/signup/success');
     })
     .catch(function(error) {
@@ -39,11 +39,11 @@ router.post('/', function (req, res) {
                 break;  
         }
         req.flash('error',errorMessage);
-        res.redirect('/signup')
+        res.redirect('/signup');
     })
 })
 router.get('/success',function(req,res){
-    res.render('success',{
+    res.render('Success',{
         title:'註冊成功'
     });
 })

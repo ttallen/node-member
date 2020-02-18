@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     fireAuth.signInWithEmailAndPassword(req.body.email,req.body.passwd)
     .then(function(user){
-        req.session.uid = user.uid;
+        req.session.uid = user.user.uid;
         res.redirect('/');
         console.log('登入成功');
     })
@@ -26,7 +26,6 @@ router.post('/', function (req, res) {
                 errorMessage = '密碼錯誤';
                 break;  
         }
-        console.log(error);
         console.log('登入失敗');
         req.flash('error',errorMessage);
         res.redirect('/login')
