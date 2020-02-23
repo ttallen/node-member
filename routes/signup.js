@@ -4,7 +4,7 @@ var firebase = require('../connections/firebase_connect');
 var firebaseDb = require('../connections/firebase_admin_connect');
 var fireAuth = firebase.auth();
 router.get('/', function (req, res) {
-    res.render('signup', { title: '註冊',error: req.flash('error')});
+    res.render('signup', { title: '註冊',success: req.flash('success'),error: req.flash('error')});
 })
 
 router.post('/', function (req, res) {
@@ -22,7 +22,8 @@ router.post('/', function (req, res) {
             'uid': user.user.uid
         }
         firebaseDb.ref(`/user/${user.user.uid}`).set(saveUser);
-        res.redirect('/signup/success');
+        req.flash('success','註冊成功');
+        res.redirect('/signup');
     })
     .catch(function(error) {
         var errorMessage = error.message;
@@ -42,9 +43,5 @@ router.post('/', function (req, res) {
         res.redirect('/signup');
     })
 })
-router.get('/success',function(req,res){
-    res.render('Success',{
-        title:'註冊成功'
-    });
-})
+
 module.exports = router;
